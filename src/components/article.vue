@@ -1,7 +1,8 @@
 <template>
   <div class="article">
     <d-screening />
-    <d-gaia />
+    <d-gaia catalog="movie" title="最近热门电影" />
+    <d-gaia catalog="tv" title="最近热门电视剧" />
     <d-reviews />
   </div>
 </template>

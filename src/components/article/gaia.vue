@@ -2,18 +2,20 @@
   <section class="gaia">
     <!-- head -->
     <div class="fliter-wp row">
-      <h2><div class="activate">最近热门电影</div></h2>
+      <h2>
+        <div class="activate">{{ title }}</div>
+      </h2>
       <div class="filter flex-1">
         <div class="tags">
           <ul class="tag-list row">
-            <li class="activate">热门</li>
-            <li>最新</li>
-            <li>豆瓣高分</li>
-            <li>冷门佳片</li>
-            <li>华语</li>
-            <li>欧美</li>
-            <li>韩国</li>
-            <li>日本</li>
+            <li
+              v-for="(value, key) in typelistData"
+              :key="key"
+              :class="{ activate: key === currentType }"
+              @click="currentType = key"
+            >
+              {{ value }}
+            </li>
           </ul>
         </div>
       </div>
@@ -28,272 +30,22 @@
     <div class="list-wp">
       <div class="slider">
         <div class="slide-container">
-          <div class="slide-wrapper" style="width: 1400px; left: -700px">
+          <div class="slide-wrapper" style="width: 700px; left: 0">
             <!-- page -->
             <div class="slide-page">
               <!-- item -->
-              <a class="item" target="_blank">
+              <a
+                v-for="data in gaiaDatas"
+                :key="data.id"
+                class="item"
+                target="_blank"
+                :href="data.href"
+              >
                 <div class="cover-wp">
-                  <img
-                    src="/p2550208359.jpg"
-                    alt="地久天长"
-                  />
-                </div>
-                <p>地久天长 <strong>7.9</strong></p>
-              </a>
-              <!-- item -->
-              <!-- item -->
-              <a class="item" target="_blank">
-                <div class="cover-wp">
-                  <img
-                    src="/p2550208359.jpg"
-                    alt="地久天长"
-                  />
+                  <img :src="getImg(data.img)" :alt="data.title" />
                 </div>
                 <p>
-                  <span class="green">
-                    <img
-                      src="https://img3.doubanio.com/f/movie/caa8f80abecee1fc6f9d31924cef8dd9a24c7227/pics/movie/ic_new.png"
-                      width="16"
-                      class="new"
-                    />
-                  </span>
-                  地久天长 <strong>7.9</strong>
-                </p>
-              </a>
-              <!-- item -->
-              <!-- item -->
-              <a class="item" target="_blank">
-                <div class="cover-wp">
-                  <img
-                    src="/p2550208359.jpg"
-                    alt="地久天长"
-                  />
-                </div>
-                <p>
-                  <span class="green">
-                    <img
-                      src="https://img3.doubanio.com/f/movie/caa8f80abecee1fc6f9d31924cef8dd9a24c7227/pics/movie/ic_new.png"
-                      width="16"
-                      class="new"
-                    />
-                  </span>
-                  地久天长 <strong>7.9</strong>
-                </p>
-              </a>
-              <!-- item -->
-              <!-- item -->
-              <a class="item" target="_blank">
-                <div class="cover-wp">
-                  <img
-                    src="/p2550208359.jpg"
-                    alt="地久天长"
-                  />
-                </div>
-                <p>
-                  <span class="green">
-                    <img
-                      src="https://img3.doubanio.com/f/movie/caa8f80abecee1fc6f9d31924cef8dd9a24c7227/pics/movie/ic_new.png"
-                      width="16"
-                      class="new"
-                    />
-                  </span>
-                  地久天长 <strong>7.9</strong>
-                </p>
-              </a>
-              <!-- item -->
-              <!-- item -->
-              <a class="item" target="_blank">
-                <div class="cover-wp">
-                  <img
-                    src="/p2550208359.jpg"
-                    alt="地久天长"
-                  />
-                </div>
-                <p>
-                  <span class="green">
-                    <img
-                      src="https://img3.doubanio.com/f/movie/caa8f80abecee1fc6f9d31924cef8dd9a24c7227/pics/movie/ic_new.png"
-                      width="16"
-                      class="new"
-                    />
-                  </span>
-                  地久天长 <strong>7.9</strong>
-                </p>
-              </a>
-              <!-- item -->
-              <!-- item -->
-              <a class="item" target="_blank">
-                <div class="cover-wp">
-                  <img
-                    src="/p2550208359.jpg"
-                    alt="地久天长"
-                  />
-                </div>
-                <p>
-                  <span class="green">
-                    <img
-                      src="https://img3.doubanio.com/f/movie/caa8f80abecee1fc6f9d31924cef8dd9a24c7227/pics/movie/ic_new.png"
-                      width="16"
-                      class="new"
-                    />
-                  </span>
-                  地久天长 <strong>7.9</strong>
-                </p>
-              </a>
-              <!-- item -->
-              <!-- item -->
-              <a class="item" target="_blank">
-                <div class="cover-wp">
-                  <img
-                    src="/p2550208359.jpg"
-                    alt="地久天长"
-                  />
-                </div>
-                <p>
-                  <span class="green">
-                    <img
-                      src="https://img3.doubanio.com/f/movie/caa8f80abecee1fc6f9d31924cef8dd9a24c7227/pics/movie/ic_new.png"
-                      width="16"
-                      class="new"
-                    />
-                  </span>
-                  地久天长 <strong>7.9</strong>
-                </p>
-              </a>
-              <!-- item -->
-              <!-- item -->
-              <a class="item" target="_blank">
-                <div class="cover-wp">
-                  <img
-                    src="/p2550208359.jpg"
-                    alt="地久天长"
-                  />
-                </div>
-                <p>
-                  <span class="green">
-                    <img
-                      src="https://img3.doubanio.com/f/movie/caa8f80abecee1fc6f9d31924cef8dd9a24c7227/pics/movie/ic_new.png"
-                      width="16"
-                      class="new"
-                    />
-                  </span>
-                  地久天长 <strong>7.9</strong>
-                </p>
-              </a>
-              <!-- item -->
-            </div>
-            <!-- page -->
-            <!-- page -->
-            <div class="slide-page">
-              <!-- item -->
-              <a class="item" target="_blank">
-                <div class="cover-wp">
-                  <img
-                    src="/p2550208359.jpg"
-                    alt="地久天长"
-                  />
-                </div>
-                <p>地久天长 <strong>7.9</strong></p>
-              </a>
-              <!-- item -->
-              <!-- item -->
-              <a class="item" target="_blank">
-                <div class="cover-wp">
-                  <img
-                    src="/p2550208359.jpg"
-                    alt="地久天长"
-                  />
-                </div>
-                <p>
-                  <span class="green">
-                    <img
-                      src="https://img3.doubanio.com/f/movie/caa8f80abecee1fc6f9d31924cef8dd9a24c7227/pics/movie/ic_new.png"
-                      width="16"
-                      class="new"
-                    />
-                  </span>
-                  地久天长 <strong>7.9</strong>
-                </p>
-              </a>
-              <!-- item -->
-              <!-- item -->
-              <a class="item" target="_blank">
-                <div class="cover-wp">
-                  <img
-                    src="/p2550208359.jpg"
-                    alt="地久天长"
-                  />
-                </div>
-                <p>
-                  <span class="green">
-                    <img
-                      src="https://img3.doubanio.com/f/movie/caa8f80abecee1fc6f9d31924cef8dd9a24c7227/pics/movie/ic_new.png"
-                      width="16"
-                      class="new"
-                    />
-                  </span>
-                  地久天长 <strong>7.9</strong>
-                </p>
-              </a>
-              <!-- item -->
-              <!-- item -->
-              <a class="item" target="_blank">
-                <div class="cover-wp">
-                  <img
-                    src="/p2550208359.jpg"
-                    alt="地久天长"
-                  />
-                </div>
-                <p>
-                  <span class="green">
-                    <img
-                      src="https://img3.doubanio.com/f/movie/caa8f80abecee1fc6f9d31924cef8dd9a24c7227/pics/movie/ic_new.png"
-                      width="16"
-                      class="new"
-                    />
-                  </span>
-                  地久天长 <strong>7.9</strong>
-                </p>
-              </a>
-              <!-- item -->
-              <!-- item -->
-              <a class="item" target="_blank">
-                <div class="cover-wp">
-                  <img
-                    src="/p2550208359.jpg"
-                    alt="地久天长"
-                  />
-                </div>
-                <p>
-                  <span class="green">
-                    <img
-                      src="https://img3.doubanio.com/f/movie/caa8f80abecee1fc6f9d31924cef8dd9a24c7227/pics/movie/ic_new.png"
-                      width="16"
-                      class="new"
-                    />
-                  </span>
-                  地久天长 <strong>7.9</strong>
-                </p>
-              </a>
-              <!-- item -->
-              <!-- item -->
-              <a class="item" target="_blank">
-                <div class="cover-wp">
-                  <img
-                    src="/p2550208359.jpg"
-                    alt="地久天长"
-                  />
-                </div>
-                <p>
-                  <span class="green">
-                    <img
-                      src="https://img3.doubanio.com/f/movie/caa8f80abecee1fc6f9d31924cef8dd9a24c7227/pics/movie/ic_new.png"
-                      width="16"
-                      class="new"
-                    />
-                  </span>
-                  地久天长 <strong>7.9</strong>
+                  {{ data.title }} <strong>{{ data.rate }}</strong>
                 </p>
               </a>
               <!-- item -->
@@ -304,8 +56,12 @@
 
         <div class="slide-ctrl ui-slide-control">
           <a class="btn-prev" href="javascript:void(0)"></a>
-          <i class="dot activate"></i> <i class="dot"></i> <i class="dot"></i>
-          <i class="dot"></i> <i class="dot"></i>
+          <i
+            v-for="i in total"
+            :key="i"
+            :class="['dot', { activate: page === i }]"
+            @click="page = i"
+          ></i>
           <a class="btn-next" href="javascript:void(0)"></a>
         </div>
       </div>
@@ -315,10 +71,57 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref, watch } from "vue";
+import axios from "../../axios/axios";
+import { getImg } from "../../libs/common";
 
 export default defineComponent({
-  setup() {},
+  props: ["catalog", "title"],
+  setup({ catalog, title }) {
+    const gaiaDatas = ref([]);
+    const typelistData = ref({});
+    const currentType = ref("");
+    const page = ref(1);
+    const total = ref(0);
+
+    axios(`/gaia/${catalog}/typelist`).then((res) => {
+      typelistData.value = res.data;
+
+      for (let key in res.data) {
+        currentType.value = key;
+        break;
+      }
+    });
+
+    watch(currentType, () => {
+      page.value = 1;
+      axios(
+        `/gaia/${catalog}?type=${currentType.value}&page=${page.value}`
+      ).then((res) => {
+        gaiaDatas.value = res.data.list;
+        total.value = res.data.total;
+      });
+    });
+
+    watch(page, () => {
+      axios(
+        `/gaia/${catalog}?type=${currentType.value}&page=${page.value}`
+      ).then((res) => {
+        gaiaDatas.value = res.data.list;
+        total.value = res.data.total;
+      });
+    });
+
+    return {
+      gaiaDatas,
+      title,
+      currentType,
+      typelistData,
+      getImg,
+      total,
+      page,
+    };
+  },
 });
 </script>
 
