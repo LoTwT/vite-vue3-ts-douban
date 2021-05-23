@@ -15,9 +15,13 @@
 import { defineComponent, ref } from "vue";
 import axios from "../../axios/axios";
 
+interface HotlinkType {
+  [propName: string]: string;
+}
+
 export default defineComponent({
   setup() {
-    const hotlinkData = ref([]);
+    const hotlinkData = ref<HotlinkType[]>([]);
     axios("/hotlinks").then((res) => (hotlinkData.value = res.data));
 
     return {

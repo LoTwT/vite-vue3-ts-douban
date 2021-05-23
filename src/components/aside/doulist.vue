@@ -16,9 +16,15 @@
 import { defineComponent, ref } from "vue";
 import axios from "../../axios/axios";
 
+interface DoulistType {
+  recommend: number;
+  title: string;
+  url: string;
+}
+
 export default defineComponent({
   setup() {
-    const doulistDatas = ref([]);
+    const doulistDatas = ref<DoulistType[]>([]);
     axios("/doulist").then((res) => (doulistDatas.value = res.data));
 
     return {

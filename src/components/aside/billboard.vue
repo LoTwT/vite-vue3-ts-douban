@@ -24,9 +24,14 @@
 import { defineComponent, ref } from "vue";
 import axios from "../../axios/axios";
 
+interface BillboardType {
+  title: string;
+  url: string;
+}
+
 export default defineComponent({
   setup() {
-    const billboardDatas = ref([]);
+    const billboardDatas = ref<BillboardType[]>([]);
     axios("/billboard").then((res) => (billboardDatas.value = res.data));
 
     return {

@@ -1,5 +1,1 @@
-interface defineData {
-    apikey: string
-}
-
-export default window as any as defineData
+export const apikey = "e93957b0dfcf4df788b633557449f3eb"

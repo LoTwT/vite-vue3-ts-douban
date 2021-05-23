@@ -9,8 +9,8 @@
               <input
                 id="inp-query"
                 name="search_text"
-                size="22"
-                maxlength="60"
+                :size="22"
+                :maxlength="60"
                 placeholder="搜索电影、电视剧、综艺、影人"
                 value=""
                 autocomplete="off"
@@ -43,9 +43,13 @@
 import { defineComponent, ref } from "vue";
 import axios from "../axios/axios";
 
+interface NavType {
+  [propName: string]: string;
+}
+
 export default defineComponent({
   setup() {
-    const navs = ref([]);
+    const navs = ref<NavType[]>([]);
     // 请求数据
     axios("/navs").then((res) => (navs.value = res.data));
 

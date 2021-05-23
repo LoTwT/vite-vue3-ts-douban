@@ -84,10 +84,14 @@ import { defineComponent, ref, computed } from "vue";
 import axios from "../../axios/axios";
 import { getImg } from "../../libs/common";
 
+interface ScreeningType {
+  [propName: string]: string;
+}
+
 export default defineComponent({
   setup() {
     const page = ref(0);
-    const screening = ref<null | any[]>(null);
+    const screening = ref<null | ScreeningType[]>(null);
     axios("/screening").then((res) => (screening.value = res.data));
 
     // 总页数

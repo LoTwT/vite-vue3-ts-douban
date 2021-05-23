@@ -50,9 +50,13 @@ import { defineComponent, ref } from "vue";
 import axios from "../../axios/axios";
 import { getImg } from "../../libs/common";
 
+interface ReviewsType {
+  [propName: string]: string;
+}
+
 export default defineComponent({
   setup() {
-    const reviewsDatas = ref([]);
+    const reviewsDatas = ref<ReviewsType[]>([]);
     axios("/reviews").then((res) => (reviewsDatas.value = res.data));
 
     return {

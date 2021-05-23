@@ -12,7 +12,7 @@
               v-for="(value, key) in typelistData"
               :key="key"
               :class="{ activate: key === currentType }"
-              @click="currentType = key"
+              @click="currentType = key.toString()"
             >
               {{ value }}
             </li>
@@ -75,11 +75,19 @@ import { defineComponent, ref, watch } from "vue";
 import axios from "../../axios/axios";
 import { getImg } from "../../libs/common";
 
+interface GaiaListType {
+  [propName: string]: string;
+}
+
+interface TypelistType {
+  [propName: string]: string;
+}
+
 export default defineComponent({
   props: ["catalog", "title"],
   setup({ catalog, title }) {
-    const gaiaDatas = ref([]);
-    const typelistData = ref({});
+    const gaiaDatas = ref<GaiaListType[]>([]);
+    const typelistData = ref<TypelistType>({});
     const currentType = ref("");
     const page = ref(1);
     const total = ref(0);
