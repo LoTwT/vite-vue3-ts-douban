@@ -2,22 +2,9 @@
   <div class="hot_link">
     <h2>电影活动 &nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·</h2>
     <ul>
-      <li>
-        <a
-          href="https://bizpage.douban.com/hollywood-producer/"
-          target="_blank"
-        >
-          招募 | 好莱坞制片人电影商务交流之旅
-        </a>
-      </li>
-      <li>
-        <a href="https://www.douban.com/note/722964489/" target="_blank">
-          专访姚晨 | 电影是对生命本身的探讨
-        </a>
-      </li>
-      <li>
-        <a href="https://www.douban.com/note/721895068/" target="_blank">
-          布光课 | 不是不美，可能是光不对
+      <li v-for="(data, index) in hotlinkData" :key="index">
+        <a :href="data.url" target="_blank">
+          {{ data.title }}
         </a>
       </li>
     </ul>
@@ -25,10 +12,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
+import axios from "../../axios/axios";
 
 export default defineComponent({
-  setup() {},
+  setup() {
+    const hotlinkData = ref([]);
+    axios("/hotlinks").then((res) => (hotlinkData.value = res.data));
+
+    return {
+      hotlinkData,
+    };
+  },
 });
 </script>
 
