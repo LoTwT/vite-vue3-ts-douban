@@ -9,40 +9,10 @@
     </div>
     <div class="billboard-bd">
       <ul>
-        <li class="row">
-          <span class="order">1</span>
+        <li class="row" v-for="(data, index) in billboardDatas" :key="index">
+          <span class="order">{{ index + 1 }}</span>
           <p class="title">
-            <a href="https://movie.douban.com/subject/1291561/">千与千寻</a>
-          </p>
-        </li>
-        <li class="row">
-          <span class="order">1</span>
-          <p class="title">
-            <a href="https://movie.douban.com/subject/1291561/">千与千寻</a>
-          </p>
-        </li>
-        <li class="row">
-          <span class="order">1</span>
-          <p class="title">
-            <a href="https://movie.douban.com/subject/1291561/">千与千寻</a>
-          </p>
-        </li>
-        <li class="row">
-          <span class="order">1</span>
-          <p class="title">
-            <a href="https://movie.douban.com/subject/1291561/">千与千寻</a>
-          </p>
-        </li>
-        <li class="row">
-          <span class="order">1</span>
-          <p class="title">
-            <a href="https://movie.douban.com/subject/1291561/">千与千寻</a>
-          </p>
-        </li>
-        <li class="row">
-          <span class="order">1</span>
-          <p class="title">
-            <a href="https://movie.douban.com/subject/1291561/">千与千寻</a>
+            <a :href="data.url">{{ data.title }}</a>
           </p>
         </li>
       </ul>
@@ -51,10 +21,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
+import axios from "../../axios/axios";
 
 export default defineComponent({
-  setup() {},
+  setup() {
+    const billboardDatas = ref([]);
+    axios("/billboard").then((res) => (billboardDatas.value = res.data));
+
+    return {
+      billboardDatas,
+    };
+  },
 });
 </script>
 
