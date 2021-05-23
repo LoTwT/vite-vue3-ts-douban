@@ -2,20 +2,10 @@
   <div id="doulist">
     <h2>热门豆列</h2>
     <ul>
-      <li>
-        <span>137推荐</span>
+      <li v-for="(data, index) in doulistDatas" :key="index">
+        <span>{{ data.recommend }} 推荐</span>
         <div class="title">
-          <a target="_blank" href="https://www.douban.com/doulist/521464/"
-            >被人遗忘的角落--英伦风</a
-          >
-        </div>
-      </li>
-      <li>
-        <span>5825推荐</span>
-        <div class="title">
-          <a target="_blank" href="https://www.douban.com/doulist/57376/"
-            >那些牛叉闪闪的片子</a
-          >
+          <a target="_blank" :href="data.url">{{ data.title }}</a>
         </div>
       </li>
     </ul>
@@ -23,10 +13,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
+import axios from "../../axios/axios";
 
 export default defineComponent({
-  setup() {},
+  setup() {
+    const doulistDatas = ref([]);
+    axios("/doulist").then((res) => (doulistDatas.value = res.data));
+
+    return {
+      doulistDatas,
+    };
+  },
 });
 </script>
 
