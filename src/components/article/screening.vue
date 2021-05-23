@@ -1,5 +1,5 @@
 <template>
-  <section id="screening">
+  <section id="screening" v-if="screening">
     <!-- section-hd -->
     <div class="section-hd row">
       <h2 class="flex-1">
@@ -16,15 +16,15 @@
         </span>
       </h2>
       <div class="slide-tip">
-        <span class="ui-slide-index">1</span> /
-        <span class="ui-slide-max">2</span>
+        <span class="ui-slide-index">{{ page + 1 }}</span> /
+        <span class="ui-slide-max">{{ totalPage }}</span>
       </div>
       <div class="ui-slide-control">
         <span class="prev-btn"
-          ><a class="btn-prev" href="javascript:void(0)"></a
+          ><a class="btn-prev" href="javascript:void(0)" @click="goPrevPage"></a
         ></span>
         <span class="next-btn"
-          ><a class="btn-next" href="javascript:void(0)"></a
+          ><a class="btn-next" href="javascript:void(0)" @click="goNextPage"></a
         ></span>
       </div>
     </div>
@@ -39,189 +39,31 @@
               <!-- page -->
               <div class="slide-page">
                 <!-- item -->
-                <div class="ui-slide-item">
+                <div
+                  class="ui-slide-item"
+                  v-for="data in datas"
+                  :key="data.url"
+                >
                   <ul>
                     <li class="poster">
-                      <a>
-                        <img
-                          src="/p2557573348.webp"
-                          alt="千与千寻"
-                        />
+                      <a :href="data.url">
+                        <img :src="getImg(data.img)" :alt="data.title" />
                       </a>
                     </li>
-                    <li class="title"><a class="">千与千寻</a></li>
+                    <li class="title">
+                      <a class="">{{ data.title }}</a>
+                    </li>
                     <li class="rating">
                       <!-- ✨星星评分 allstar(00~50)+5 -->
-                      <span class="rating-star allstar50"></span>
-                      <span class="subject-rate">9.3</span>
+                      <span
+                        :class="['rating-star', `allstar${data.star}`]"
+                      ></span>
+                      <span class="subject-rate">{{ data.rate }}</span>
                     </li>
                     <li class="ticket_btn">
-                      <span> <a target="_blank">选座购票</a> </span>
-                    </li>
-                  </ul>
-                </div>
-                <!-- item -->
-                <!-- item -->
-                <div class="ui-slide-item">
-                  <ul>
-                    <li class="poster">
-                      <a>
-                        <img
-                          src="/p2557573348.webp"
-                          alt="千与千寻"
-                        />
-                      </a>
-                    </li>
-                    <li class="title"><a class="">千与千寻</a></li>
-                    <li class="rating">
-                      <!-- ✨星星评分 allstar(00~50)+5 -->
-                      <span class="rating-star allstar50"></span>
-                      <span class="subject-rate">9.3</span>
-                    </li>
-                    <li class="ticket_btn">
-                      <span> <a target="_blank">选座购票</a> </span>
-                    </li>
-                  </ul>
-                </div>
-                <!-- item -->
-                <!-- item -->
-                <div class="ui-slide-item">
-                  <ul>
-                    <li class="poster">
-                      <a>
-                        <img
-                          src="/p2557573348.webp"
-                          alt="千与千寻"
-                        />
-                      </a>
-                    </li>
-                    <li class="title"><a class="">千与千寻</a></li>
-                    <li class="rating">
-                      <!-- ✨星星评分 allstar(00~50)+5 -->
-                      <span class="rating-star allstar50"></span>
-                      <span class="subject-rate">9.3</span>
-                    </li>
-                    <li class="ticket_btn">
-                      <span> <a target="_blank">选座购票</a> </span>
-                    </li>
-                  </ul>
-                </div>
-                <!-- item -->
-                <!-- item -->
-                <div class="ui-slide-item">
-                  <ul>
-                    <li class="poster">
-                      <a>
-                        <img
-                          src="/p2557573348.webp"
-                          alt="千与千寻"
-                        />
-                      </a>
-                    </li>
-                    <li class="title"><a class="">千与千寻</a></li>
-                    <li class="rating">
-                      <!-- ✨星星评分 allstar(00~50)+5 -->
-                      <span class="rating-star allstar50"></span>
-                      <span class="subject-rate">9.3</span>
-                    </li>
-                    <li class="ticket_btn">
-                      <span> <a target="_blank">选座购票</a> </span>
-                    </li>
-                  </ul>
-                </div>
-                <!-- item -->
-                <!-- item -->
-                <div class="ui-slide-item">
-                  <ul>
-                    <li class="poster">
-                      <a>
-                        <img
-                          src="/p2557573348.webp"
-                          alt="千与千寻"
-                        />
-                      </a>
-                    </li>
-                    <li class="title"><a class="">千与千寻</a></li>
-                    <li class="rating">
-                      <!-- ✨星星评分 allstar(00~50)+5 -->
-                      <span class="rating-star allstar50"></span>
-                      <span class="subject-rate">9.3</span>
-                    </li>
-                    <li class="ticket_btn">
-                      <span> <a target="_blank">选座购票</a> </span>
-                    </li>
-                  </ul>
-                </div>
-                <!-- item -->
-              </div>
-              <!-- page -->
-              <!-- page -->
-              <div class="slide-page">
-                <!-- item -->
-                <div class="ui-slide-item">
-                  <ul>
-                    <li class="poster">
-                      <a>
-                        <img
-                          src="/p2557573348.webp"
-                          alt="千与千寻"
-                        />
-                      </a>
-                    </li>
-                    <li class="title"><a class="">千与千寻</a></li>
-                    <li class="rating">
-                      <!-- ✨星星评分 allstar(00~50)+5 -->
-                      <span class="rating-star allstar50"></span>
-                      <span class="subject-rate">9.3</span>
-                    </li>
-                    <li class="ticket_btn">
-                      <span> <a target="_blank">选座购票</a> </span>
-                    </li>
-                  </ul>
-                </div>
-                <!-- item -->
-                <!-- item -->
-                <div class="ui-slide-item">
-                  <ul>
-                    <li class="poster">
-                      <a>
-                        <img
-                          src="/p2557573348.webp"
-                          alt="千与千寻"
-                        />
-                      </a>
-                    </li>
-                    <li class="title"><a class="">千与千寻</a></li>
-                    <li class="rating">
-                      <!-- ✨星星评分 allstar(00~50)+5 -->
-                      <span class="rating-star allstar50"></span>
-                      <span class="subject-rate">9.3</span>
-                    </li>
-                    <li class="ticket_btn">
-                      <span> <a target="_blank">选座购票</a> </span>
-                    </li>
-                  </ul>
-                </div>
-                <!-- item -->
-                <!-- item -->
-                <div class="ui-slide-item">
-                  <ul>
-                    <li class="poster">
-                      <a>
-                        <img
-                          src="/p2557573348.webp"
-                          alt="千与千寻"
-                        />
-                      </a>
-                    </li>
-                    <li class="title"><a class="">千与千寻</a></li>
-                    <li class="rating">
-                      <!-- ✨星星评分 allstar(00~50)+5 -->
-                      <span class="rating-star allstar50"></span>
-                      <span class="subject-rate">9.3</span>
-                    </li>
-                    <li class="ticket_btn">
-                      <span> <a target="_blank">选座购票</a> </span>
+                      <span>
+                        <a :href="data.ticket" target="_blank">选座购票</a>
+                      </span>
                     </li>
                   </ul>
                 </div>
@@ -238,10 +80,43 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref, computed } from "vue";
+import axios from "../../axios/axios";
+import { getImg } from "../../libs/common";
 
 export default defineComponent({
-  setup() {},
+  setup() {
+    const page = ref(0);
+    const screening = ref<null | any[]>(null);
+    axios("/screening").then((res) => (screening.value = res.data));
+
+    // 总页数
+    const totalPage = computed(() =>
+      screening.value ? Math.ceil(screening.value.length / 5) : 0
+    );
+
+    const datas = computed(() =>
+      screening.value
+        ? screening.value.slice(page.value * 5, (page.value + 1) * 5)
+        : []
+    );
+
+    // 上一页
+    const goPrevPage = () => page.value > 0 && page.value--;
+
+    // 下一页
+    const goNextPage = () => page.value < totalPage.value - 1 && page.value++;
+
+    return {
+      screening,
+      page,
+      totalPage,
+      datas,
+      getImg,
+      goPrevPage,
+      goNextPage,
+    };
+  },
 });
 </script>
 
